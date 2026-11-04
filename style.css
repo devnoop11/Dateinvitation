@@ -90,3 +90,23 @@ button{touch-action:manipulation}
   .window-footer{font-size:8px;letter-spacing:0}
   .success .reply-card{margin-top:24px}
 }
+
+/* A sunlit photograph flowing into the letter paper. */
+:root{background:#f7f4ec;--border:#e6e4d8}
+body{background:radial-gradient(ellipse at 12% 25%,#e6e9cf70,transparent 50%),radial-gradient(ellipse at 100% 60%,#efdfbc50,transparent 45%)}
+.ambient-one{background:#d7dfb7;opacity:.4}
+.ambient-two{background:#e9d7a6;opacity:.35}
+.photo-memory{position:relative;margin:0;isolation:isolate;background:#fffcf9}
+.photo-memory img{display:block;width:100%;height:auto;aspect-ratio:1182/665;object-fit:cover;object-position:center}
+.photo-memory::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,transparent 48%,#fffcf90d 62%,#fffcf9bd 85%,#fffcf9 100%)}
+.photo-memory figcaption{position:absolute;z-index:1;bottom:12px;left:16px;right:16px;text-align:center;font-size:11px;letter-spacing:2px;line-height:1.7;color:#7b8062}
+.photo-stamp{position:absolute;top:17px;left:18px;z-index:1;border:1px solid #fffcf966;background:#fffcf9bf;color:#69734f;border-radius:30px;padding:7px 12px;font-size:9px;letter-spacing:1.5px}
+#invitation .card-content{padding-top:12px}
+.system-log{background:#f3f4e9;border-color:#e3e5d4}
+.window-bar{background:#f3f2e9}
+@media(max-width:600px){
+  .photo-memory figcaption{font-size:10px;letter-spacing:1px;bottom:8px}
+  .photo-stamp{top:12px;left:12px;padding:5px 9px;font-size:8px}
+  #invitation .card-content{padding-top:14px}
+}
+.line-number{flex:0 0 12px;white-space:nowrap}

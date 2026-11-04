@@ -18,8 +18,13 @@
     <div class="intro"><span class="eyebrow"><span class="status-dot"></span> 你有一条新消息</span><p>有些话，想认真告诉你。</p></div>
     <article class="window" aria-labelledby="card-title">
       <div class="window-bar"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><span>给你的一封信</span><span class="lock" aria-label="私人心意">♡</span></div>
-      <div class="card-content" id="invitation">
-        <div class="letter-icon" aria-hidden="true">💌<span>♡</span></div>
+      <div id="invitation">
+        <figure class="photo-memory">
+          <img src="./assets/portrait.jpg" width="1182" height="665" alt="夕阳下，草地上温暖的笑眼。" fetchpriority="high" decoding="async">
+          <span class="photo-stamp" aria-hidden="true">属于你的光 · ♡</span>
+          <figcaption>想把美好的瞬间，都留给你。</figcaption>
+        </figure>
+        <div class="card-content">
         <div class="label">一条只发送给你的系统通知</div>
         <h1 id="card-title">嘿，有一份邀请<br>想送给<span>特别的你。</span></h1>
         <p class="subtitle">来自一位在意你的人</p>
@@ -32,6 +37,7 @@
         <div class="question"><span class="small-star" aria-hidden="true">✧</span><h2>这个周末，可以正式请你出去约会吗？</h2><p>想给你拍更多的美美的照片。</p></div>
         <div class="actions" id="actions"><button class="yes-button" id="yes-button" type="button">好呀 <span aria-hidden="true">♡</span></button><button class="no-button" id="no-button" type="button">再想想</button></div>
         <p class="hint" id="hint" aria-live="polite">小提示：有个按钮好像有自己的想法。</p>
+      </div>
       </div>
       <section class="success" id="success" aria-labelledby="success-title" hidden>
         <div class="success-icon" aria-hidden="true">💖</div>

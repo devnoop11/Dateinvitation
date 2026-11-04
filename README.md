@@ -29,6 +29,10 @@ Live: https://devnoop11.github.io/Dateinvitation/
 
 Pushes auf `main` veröffentlichen über `.github/workflows/pages.yml` automatisch. Unter **Settings → Pages → Source** muss **GitHub Actions** gewählt sein. GitHub Pages muss nach einem Wechsel der Repository-Sichtbarkeit gegebenenfalls erneut aktiviert werden.
 
+## Foto
+
+Das persönliche Foto liegt unter `assets/portrait.jpg` und ist als großes Motiv mit weichem Übergang in die Einladung eingebunden. EXIF-, IPTC- und Kommentar-Metadaten wurden bei der Übernahme entfernt; die JPEG-Bilddaten bleiben unverändert. Der Pages-Workflow übernimmt den Asset-Ordner.
+
 ## Dateien
 
 - `index.html`: chinesische Einladung und chinesische Terminauswahl
