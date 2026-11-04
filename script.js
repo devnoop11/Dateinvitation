@@ -10,8 +10,11 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let escapes = 0;
 let lastEscape = -Infinity;
 let heartTimer;
+let celebrationFrame;
+let invitationAccepted = false;
 
 function moveNoButton(event) {
+  if (invitationAccepted) return;
   if (event.type === 'pointerdown') event.preventDefault();
   const now = performance.now();
   if (now - lastEscape < 180) return;
@@ -47,35 +50,58 @@ noButton.addEventListener('pointerenter', (event) => {
   if (event.pointerType !== 'touch') moveNoButton(event);
 });
 noButton.addEventListener('pointerdown', moveNoButton);
-noButton.addEventListener('click', moveNoButton);
+noButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  // Pointer input already moved the button. Ignore its delayed synthetic click.
+  if (event.detail === 0) moveNoButton(event);
+});
 
 function celebrate() {
   clearTimeout(heartTimer);
   hearts.replaceChildren();
   if (reducedMotion.matches) return;
-  for (let i = 0; i < 28; i++) {
+  const count = window.matchMedia('(max-width: 600px)').matches ? 12 : 24;
+  const fragment = document.createDocumentFragment();
+  for (let i = 0; i < count; i++) {
     const heart = document.createElement('span');
     heart.className = 'floating-heart';
     heart.textContent = i % 3 === 0 ? '♡' : '♥';
     heart.style.left = `${Math.random() * 100}%`;
     heart.style.fontSize = `${14 + Math.random() * 24}px`;
     heart.style.setProperty('--delay', `${Math.random() * 1.2}s`);
-    hearts.append(heart);
+    fragment.append(heart);
   }
+  hearts.append(fragment);
   heartTimer = setTimeout(() => hearts.replaceChildren(), 5000);
 }
 
-yesButton.addEventListener('click', () => {
+function acceptInvitation() {
+  if (invitationAccepted) return;
+  invitationAccepted = true;
   invitation.hidden = true;
   success.hidden = false;
+  noButton.style.pointerEvents = 'none';
   updateReply();
-  noButton.classList.remove('escaped');
-  celebrate();
+  resetNoPosition();
   const heading = document.getElementById('success-title');
   heading.tabIndex = -1;
   heading.focus({ preventScroll: true });
   document.querySelector('.window').scrollIntoView({ behavior: 'instant', block: 'start' });
+  // Paint the next step before doing the decorative animation work.
+  celebrationFrame = requestAnimationFrame(() => {
+    celebrationFrame = requestAnimationFrame(() => {
+      if (invitationAccepted) celebrate();
+    });
+  });
+}
+
+yesButton.addEventListener('pointerup', (event) => {
+  if (event.pointerType === 'touch' && event.isPrimary && event.button === 0) {
+    event.preventDefault();
+    acceptInvitation();
+  }
 });
+yesButton.addEventListener('click', acceptInvitation);
 
 document.getElementById('reply-form').addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -97,12 +123,16 @@ document.getElementById('reply-form').addEventListener('submit', async (event) =
 });
 
 document.getElementById('restart-button').addEventListener('click', () => {
+  invitationAccepted = false;
+  cancelAnimationFrame(celebrationFrame);
   success.hidden = true;
   invitation.hidden = false;
   noButton.classList.remove('escaped');
   noButton.style.removeProperty('left');
   noButton.style.removeProperty('top');
+  noButton.style.removeProperty('pointer-events');
   escapes = 0;
+  lastEscape = -Infinity;
   hint.textContent = '小提示：有个按钮好像有自己的想法。';
   document.getElementById('copy-status').textContent = '复制后，粘贴到微信发给我吧。';
   clearTimeout(heartTimer);
