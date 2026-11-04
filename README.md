@@ -1,6 +1,6 @@
 # Dateinvitation 💌
 
-Eine persönliche Einladung auf Chinesisch mit deutscher Terminauswahl und deutscher WeChat-Nachricht, optimiert für Smartphone und Desktop. Nach der Zusage kann die Empfängerin dieses Wochenende, Samstag, Sonntag oder einen eigenen Termin wählen. Die optionale Uhrzeit und das gewählte Datum werden in eine Nachricht für WeChat übernommen.
+Eine persönliche Einladung auf Chinesisch mit chinesischer Terminauswahl und chinesischer WeChat-Nachricht, optimiert für Smartphone und Desktop. Nach der Zusage kann die Empfängerin dieses Wochenende, Samstag, Sonntag oder einen eigenen Termin wählen. Die optionale Uhrzeit und das gewählte Datum werden in eine Nachricht für WeChat übernommen.
 
 ## Lokal öffnen
 
@@ -14,10 +14,10 @@ Danach http://127.0.0.1:4173 öffnen. Keine Installation, kein Build und keine e
 
 ## Bedienung
 
-1. Mit **Ja, gerne** die Einladung annehmen.
+1. Mit **好呀** die Einladung annehmen.
 2. Dieses Wochenende, Samstag oder Sonntag auswählen – oder ein eigenes Datum vorschlagen.
 3. Optional eine Uhrzeit angeben.
-4. **Nachricht kopieren** wählen und den Text in WeChat einfügen und abschicken.
+4. **复制消息** wählen und den Text in WeChat einfügen und abschicken.
 
 Die Wochenenddaten werden im lokalen Kalender des Browsers berechnet. Am Sonntag ist der vergangene Samstag nicht mehr auswählbar. Eigene Termine dürfen nicht in der Vergangenheit liegen. Eine Uhrzeit ist optional. Die Nachricht zeigt die Auswahl vor dem Kopieren an. Falls die Zwischenablage nicht verfügbar ist, wird der Text zum manuellen Kopieren markiert.
 
@@ -31,7 +31,7 @@ Pushes auf `main` veröffentlichen über `.github/workflows/pages.yml` automatis
 
 ## Dateien
 
-- `index.html`: chinesische Einladung und deutsche Terminauswahl
+- `index.html`: chinesische Einladung und chinesische Terminauswahl
 - `style.css`: responsive Darstellung und Animationen
 - `script.js`: Buttons, Wochenendberechnung und kopierbare Nachricht
 

@@ -14,10 +14,10 @@
   <div class="ambient ambient-one" aria-hidden="true"></div>
   <div class="ambient ambient-two" aria-hidden="true"></div>
   <main>
-    <header class="masthead"><a href="./" aria-label="回到邀请首页"><span class="tiny-heart">♥</span> JUST FOR YOU</a><span class="edition">一份特别的邀请 · 001</span></header>
-    <div class="intro"><span class="eyebrow"><span class="status-dot"></span> YOU HAVE A NEW MESSAGE</span><p>有些话，想认真告诉你。</p></div>
+    <header class="masthead"><a href="./" aria-label="回到邀请首页"><span class="tiny-heart">♥</span> 只为你</a><span class="edition">一份特别的邀请 · 001</span></header>
+    <div class="intro"><span class="eyebrow"><span class="status-dot"></span> 你有一条新消息</span><p>有些话，想认真告诉你。</p></div>
     <article class="window" aria-labelledby="card-title">
-      <div class="window-bar"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><span>message_for_you.md</span><span class="lock" aria-label="私人心意">♡</span></div>
+      <div class="window-bar"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><span>给你的一封信</span><span class="lock" aria-label="私人心意">♡</span></div>
       <div class="card-content" id="invitation">
         <div class="letter-icon" aria-hidden="true">💌<span>♡</span></div>
         <div class="label">一条只发送给你的系统通知</div>
@@ -30,35 +30,35 @@
           <div class="log-row"><span class="line-number" aria-hidden="true">03</span><div><span class="tag feature">新增功能</span><p>想和你一起创造更多开心的回忆 <span class="text-heart">♥</span></p></div></div>
         </div>
         <div class="question"><span class="small-star" aria-hidden="true">✧</span><h2>这个周末，可以正式请你出去约会吗？</h2><p>想给你拍更多的美美的照片。</p></div>
-        <div class="actions" id="actions"><button class="yes-button" id="yes-button" type="button">Yes，好呀 <span aria-hidden="true">♡</span></button><button class="no-button" id="no-button" type="button">No，再想想</button></div>
+        <div class="actions" id="actions"><button class="yes-button" id="yes-button" type="button">好呀 <span aria-hidden="true">♡</span></button><button class="no-button" id="no-button" type="button">再想想</button></div>
         <p class="hint" id="hint" aria-live="polite">小提示：有个按钮好像有自己的想法。</p>
       </div>
       <section class="success" id="success" aria-labelledby="success-title" hidden>
         <div class="success-icon" aria-hidden="true">💖</div>
         <span class="eyebrow">邀请已接受</span>
         <h1 id="success-title">约会邀请已接受！</h1>
-        <p lang="de">Wann passt es dir? Wähle dieses Wochenende oder schlag einen eigenen Termin vor.</p>
-        <form id="reply-form" lang="de">
+        <p lang="zh-CN">你什么时候方便？可以选择这个周末，也可以提出你方便的时间。</p>
+        <form id="reply-form" lang="zh-CN">
           <fieldset class="date-options">
-            <legend>Unser Date · Zeit: dieses Wochenende</legend>
-            <label class="date-option"><input type="radio" name="day" value="weekend" checked><span>Dieses Wochenende<small id="weekend-range"></small></span></label>
-            <label class="date-option"><input type="radio" name="day" value="saturday" id="saturday-option"><span>Samstag<small id="saturday-label"></small></span></label>
-            <label class="date-option"><input type="radio" name="day" value="sunday"><span>Sonntag<small id="sunday-label"></small></span></label>
-            <label class="date-option"><input type="radio" name="day" value="custom"><span>Eigenen Termin vorschlagen<small>Falls ein anderer Tag besser passt</small></span></label>
+            <legend>我们的约会 · 时间：这个周末</legend>
+            <label class="date-option"><input type="radio" name="day" value="weekend" checked><span>这个周末<small id="weekend-range"></small></span></label>
+            <label class="date-option"><input type="radio" name="day" value="saturday" id="saturday-option"><span>周六<small id="saturday-label"></small></span></label>
+            <label class="date-option"><input type="radio" name="day" value="sunday"><span>周日<small id="sunday-label"></small></span></label>
+            <label class="date-option"><input type="radio" name="day" value="custom"><span>我想选个时间<small>如果其他日子更方便</small></span></label>
           </fieldset>
           <div class="date-fields">
-            <div id="custom-date-field" hidden><label for="custom-date">Dein Wunschdatum</label><input type="date" id="custom-date" name="date"></div>
-            <div><label for="date-time">Uhrzeit <span>(optional)</span></label><input type="time" id="date-time" name="time"><small>Du kannst die Uhrzeit auch offenlassen.</small></div>
+            <div id="custom-date-field" hidden><label for="custom-date">你想约的日期</label><input type="date" id="custom-date" name="date"></div>
+            <div><label for="date-time">时间 <span>（选填）</span></label><input type="time" id="date-time" name="time"><small>也可以先不填具体时间。</small></div>
           </div>
-          <div class="reply-card"><span>Deine Nachricht für WeChat</span><p id="reply-text" aria-live="polite"></p></div>
-          <button class="yes-button" id="copy-button" type="submit">Nachricht kopieren <span aria-hidden="true">↗</span></button>
-          <p class="copy-status" id="copy-status" role="status">Danach in WeChat einfügen und selbst abschicken.</p>
+          <div class="reply-card"><span>准备发给我的微信消息</span><p id="reply-text" aria-live="polite"></p></div>
+          <button class="yes-button" id="copy-button" type="submit">复制消息 <span aria-hidden="true">↗</span></button>
+          <p class="copy-status" id="copy-status" role="status">复制后，粘贴到微信发给我吧。</p>
         </form>
         <button class="restart" id="restart-button" type="button">再看一遍邀请</button>
       </section>
       <div class="window-footer"><span><i class="status-dot"></i> 连接正常 · 心意已送达</span><span aria-hidden="true">♥</span></div>
     </article>
-    <footer class="page-footer"><span>用一点点代码，装下一点点心意。</span><span>MADE WITH CARE <span aria-hidden="true">♡</span></span></footer>
+    <footer class="page-footer"><span>用一点点代码，装下一点点心意。</span><span>用心制作 <span aria-hidden="true">♡</span></span></footer>
   </main>
   <div class="hearts" id="hearts" aria-hidden="true"></div>
 </body>

@@ -85,14 +85,14 @@ document.getElementById('reply-form').addEventListener('submit', async (event) =
   try {
     if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
     await navigator.clipboard.writeText(text);
-    status.textContent = 'Kopiert! Jetzt in WeChat einfügen und abschicken ♡';
+    status.textContent = '已复制！粘贴到微信发给我吧 ♡';
   } catch {
     const selection = window.getSelection();
     const range = document.createRange();
     range.selectNodeContents(document.getElementById('reply-text'));
     selection.removeAllRanges();
     selection.addRange(range);
-    status.textContent = 'Bitte den markierten Text gedrückt halten und kopieren. Danach in WeChat einfügen ♡';
+    status.textContent = '请长按并复制选中的文字，然后粘贴到微信发给我吧 ♡';
   }
 });
 
@@ -104,7 +104,7 @@ document.getElementById('restart-button').addEventListener('click', () => {
   noButton.style.removeProperty('top');
   escapes = 0;
   hint.textContent = '小提示：有个按钮好像有自己的想法。';
-  document.getElementById('copy-status').textContent = 'Danach in WeChat einfügen und selbst abschicken.';
+  document.getElementById('copy-status').textContent = '复制后，粘贴到微信发给我吧。';
   clearTimeout(heartTimer);
   hearts.replaceChildren();
   yesButton.focus({ preventScroll: true });
@@ -123,8 +123,8 @@ window.visualViewport?.addEventListener('resize', resetNoPosition);
 const replyForm = document.getElementById('reply-form');
 const customDate = document.getElementById('custom-date');
 const dateTime = document.getElementById('date-time');
-const dateFormatter = new Intl.DateTimeFormat('de-DE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-const shortDateFormatter = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+const dateFormatter = new Intl.DateTimeFormat('zh-CN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+const shortDateFormatter = new Intl.DateTimeFormat('zh-CN', { day: '2-digit', month: '2-digit', year: 'numeric' });
 let saturday;
 let sunday;
 
@@ -142,7 +142,7 @@ function refreshWeekend() {
   sunday.setDate(saturday.getDate() + 1);
   const saturdayPassed = saturday < today;
   document.getElementById('saturday-option').disabled = saturdayPassed;
-  document.getElementById('saturday-label').textContent = shortDateFormatter.format(saturday) + (saturdayPassed ? ' · bereits vorbei' : '');
+  document.getElementById('saturday-label').textContent = shortDateFormatter.format(saturday) + (saturdayPassed ? ' · 已过去' : '');
   document.getElementById('sunday-label').textContent = shortDateFormatter.format(sunday);
   document.getElementById('weekend-range').textContent = `${shortDateFormatter.format(saturday)} – ${shortDateFormatter.format(sunday)}`;
   customDate.min = localDateValue(today);
@@ -160,23 +160,23 @@ function updateReply() {
   customDate.disabled = !isCustom;
   let when;
   if (day === 'weekend') {
-    when = `dieses Wochenende (${shortDateFormatter.format(saturday)} – ${shortDateFormatter.format(sunday)})`;
+    when = `这个周末（${shortDateFormatter.format(saturday)} – ${shortDateFormatter.format(sunday)}）`;
   } else if (day === 'saturday' || day === 'sunday') {
-    when = `am ${dateFormatter.format(day === 'saturday' ? saturday : sunday)}`;
+    when = `${dateFormatter.format(day === 'saturday' ? saturday : sunday)}`;
   } else if (customDate.value && customDate.validity.valid) {
     const [year, month, date] = customDate.value.split('-').map(Number);
-    when = `am ${dateFormatter.format(new Date(year, month - 1, date))}`;
+    when = `${dateFormatter.format(new Date(year, month - 1, date))}`;
   } else {
-    document.getElementById('reply-text').textContent = 'Wähle bitte dein Wunschdatum aus. Dann ist deine Nachricht fertig.';
-    document.getElementById('copy-status').textContent = 'Für deinen eigenen Vorschlag fehlt noch das Datum.';
+    document.getElementById('reply-text').textContent = '先选一个你方便的日期，回复就准备好啦。';
+    document.getElementById('copy-status').textContent = '请先选择你想约的日期。';
     return;
   }
-  const time = dateTime.value ? ` um ${dateTime.value} Uhr` : '';
+  const time = dateTime.value ? ` ${dateTime.value}` : '';
   const message = day === 'weekend'
-    ? `Ja, ich nehme deine Einladung gerne an! Wie wäre es ${when}${time}?`
-    : `Ja, ich nehme deine Einladung gerne an! Ich schlage ${when}${time} vor.`;
+    ? `好的，我接受你的邀请。${when}${time}，你觉得怎么样？`
+    : `好的，我接受你的邀请。我想约在${when}${time}。`;
   document.getElementById('reply-text').textContent = message;
-  document.getElementById('copy-status').textContent = 'Danach in WeChat einfügen und selbst abschicken.';
+  document.getElementById('copy-status').textContent = '复制后，粘贴到微信发给我吧。';
 }
 
 replyForm.addEventListener('input', updateReply);
