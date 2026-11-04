@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8f3ef">
+  <meta name="description" content="有一份特别的邀请，想送给特别的你。">
+  <title>一份给你的特别邀请 💌</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='85'%3E💌%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <main>
+    <header class="masthead"><a href="./" aria-label="回到邀请首页"><span class="tiny-heart">♥</span> JUST FOR YOU</a><span class="edition">一份特别的邀请 · 001</span></header>
+    <div class="intro"><span class="eyebrow"><span class="status-dot"></span> YOU HAVE A NEW MESSAGE</span><p>有些话，想认真告诉你。</p></div>
+    <article class="window" aria-labelledby="card-title">
+      <div class="window-bar"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><span>message_for_you.md</span><span class="lock" aria-label="私人心意">♡</span></div>
+      <div class="card-content" id="invitation">
+        <div class="letter-icon" aria-hidden="true">💌<span>♡</span></div>
+        <div class="label">一条只发送给你的系统通知</div>
+        <h1 id="card-title">嘿，有一份邀请<br>想送给<span>特别的你。</span></h1>
+        <p class="subtitle">来自一位在意你的人</p>
+        <div class="system-log">
+          <div class="log-title"><span>⌘</span> 系统通知 <span class="log-version">v.2.0 · 用心更新</span></div>
+          <div class="log-row"><span class="line-number" aria-hidden="true">01</span><div><span class="tag warning">检测到一个小 Bug</span><p>情绪管理模块出现异常。</p></div></div>
+          <div class="log-row"><span class="line-number" aria-hidden="true">02</span><div><span class="tag repair">修复状态：进行中</span><span class="repair-dot" aria-hidden="true"></span><p>对不起，情绪化了 已经自我反思</p></div></div>
+          <div class="log-row"><span class="line-number" aria-hidden="true">03</span><div><span class="tag feature">新增功能</span><p>想和你一起创造更多开心的回忆 <span class="text-heart">♥</span></p></div></div>
+        </div>
+        <div class="question"><span class="small-star" aria-hidden="true">✧</span><h2>这个周末，可以正式请你出去约会吗？</h2><p>想给你拍更多的美美的照片。</p></div>
+        <div class="actions" id="actions"><button class="yes-button" id="yes-button" type="button">Yes，好呀 <span aria-hidden="true">♡</span></button><button class="no-button" id="no-button" type="button">No，再想想</button></div>
+        <p class="hint" id="hint" aria-live="polite">小提示：有个按钮好像有自己的想法。</p>
+      </div>
+      <section class="success" id="success" aria-labelledby="success-title" hidden>
+        <div class="success-icon" aria-hidden="true">💖</div><span class="eyebrow">INVITATION ACCEPTED</span><h1 id="success-title">约会邀请已接受！</h1><p>那就说好啦，一起创造新的开心回忆。</p><div class="reply-card"><span>给你准备好了一句回复</span><p id="reply-text">好呀，这个周末一起出去走走吧 ❤️</p></div><button class="yes-button" id="copy-button" type="button">复制回复 <span aria-hidden="true">↗</span></button><p class="copy-status" id="copy-status" role="status">复制后，发给那位在意你的人吧。</p><button class="restart" id="restart-button" type="button">再看一遍邀请</button>
+      </section>
+      <div class="window-footer"><span><i class="status-dot"></i> 连接正常 · 心意已送达</span><span aria-hidden="true">♥</span></div>
+    </article>
+    <footer class="page-footer"><span>用一点点代码，装下一点点心意。</span><span>MADE WITH CARE <span aria-hidden="true">♡</span></span></footer>
+  </main>
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
+</body>
+</html>
