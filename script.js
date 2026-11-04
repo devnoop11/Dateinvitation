@@ -40,7 +40,7 @@ function moveNoButton(event) {
   noButton.style.left = `${target.x}px`;
   noButton.style.top = `${target.y}px`;
   escapes++;
-  hint.textContent = escapes > 3 ? 'Er sagt: Denk noch ein bisschen darüber nach ♡' : 'Huch, da ist er weggelaufen. Ein kleiner Scherzkeks ♡';
+  hint.textContent = escapes > 3 ? '它说：再给这份邀请一点机会嘛 ♡' : '咦，它跑走了。看来它有自己的想法 ♡';
 }
 
 noButton.addEventListener('pointerenter', (event) => {
@@ -103,7 +103,7 @@ document.getElementById('restart-button').addEventListener('click', () => {
   noButton.style.removeProperty('left');
   noButton.style.removeProperty('top');
   escapes = 0;
-  hint.textContent = 'Psst … einer der Buttons hat wohl seinen eigenen Kopf.';
+  hint.textContent = '小提示：有个按钮好像有自己的想法。';
   document.getElementById('copy-status').textContent = 'Danach in WeChat einfügen und selbst abschicken.';
   clearTimeout(heartTimer);
   hearts.replaceChildren();
