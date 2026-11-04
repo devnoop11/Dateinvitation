@@ -50,3 +50,8 @@ button{touch-action:manipulation}
   .yes-button,.no-button{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;line-height:22px}
   .yes-button span{margin-left:10px}
 }
+/* Keep the Yes hit area stable when No leaves its original slot. */
+.actions{display:grid;grid-template-columns:repeat(2,minmax(0,145px))}
+#yes-button{grid-column:1}
+#no-button{grid-column:2}
+@media(max-width:600px){.actions{grid-template-columns:repeat(2,minmax(0,1fr))}}
