@@ -40,7 +40,7 @@ function moveNoButton(event) {
   noButton.style.left = `${target.x}px`;
   noButton.style.top = `${target.y}px`;
   escapes++;
-  hint.textContent = escapes > 3 ? '它说：再给这份邀请一点机会嘛 ♡' : '咦，它跑走了。看来它有自己的想法 ♡';
+  hint.textContent = escapes > 3 ? 'Er sagt: Denk noch ein bisschen darüber nach ♡' : 'Huch, da ist er weggelaufen. Ein kleiner Scherzkeks ♡';
 }
 
 noButton.addEventListener('pointerenter', (event) => {
@@ -68,6 +68,7 @@ function celebrate() {
 yesButton.addEventListener('click', () => {
   invitation.hidden = true;
   success.hidden = false;
+  updateReply();
   noButton.classList.remove('escaped');
   celebrate();
   const heading = document.getElementById('success-title');
@@ -76,20 +77,22 @@ yesButton.addEventListener('click', () => {
   document.querySelector('.window').scrollIntoView({ behavior: 'instant', block: 'start' });
 });
 
-document.getElementById('copy-button').addEventListener('click', async () => {
+document.getElementById('reply-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  updateReply();
   const text = document.getElementById('reply-text').textContent;
   const status = document.getElementById('copy-status');
   try {
     if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
     await navigator.clipboard.writeText(text);
-    status.textContent = '已复制！发给那位在意你的人吧 ♡';
+    status.textContent = 'Kopiert! Jetzt in WeChat einfügen und abschicken ♡';
   } catch {
     const selection = window.getSelection();
     const range = document.createRange();
     range.selectNodeContents(document.getElementById('reply-text'));
     selection.removeAllRanges();
     selection.addRange(range);
-    status.textContent = '请长按或复制上面选中的回复 ♡';
+    status.textContent = 'Bitte den markierten Text gedrückt halten und kopieren. Danach in WeChat einfügen ♡';
   }
 });
 
@@ -100,8 +103,8 @@ document.getElementById('restart-button').addEventListener('click', () => {
   noButton.style.removeProperty('left');
   noButton.style.removeProperty('top');
   escapes = 0;
-  hint.textContent = '小提示：有个按钮好像有自己的想法。';
-  document.getElementById('copy-status').textContent = '复制后，发给那位在意你的人吧。';
+  hint.textContent = 'Psst … einer der Buttons hat wohl seinen eigenen Kopf.';
+  document.getElementById('copy-status').textContent = 'Danach in WeChat einfügen und selbst abschicken.';
   clearTimeout(heartTimer);
   hearts.replaceChildren();
   yesButton.focus({ preventScroll: true });
@@ -115,3 +118,68 @@ function resetNoPosition() {
 
 window.addEventListener('resize', resetNoPosition);
 window.visualViewport?.addEventListener('resize', resetNoPosition);
+
+
+const replyForm = document.getElementById('reply-form');
+const customDate = document.getElementById('custom-date');
+const dateTime = document.getElementById('date-time');
+const dateFormatter = new Intl.DateTimeFormat('de-DE', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+const shortDateFormatter = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+let saturday;
+let sunday;
+
+function localDateValue(date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+}
+
+function refreshWeekend() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  saturday = new Date(today);
+  // On Sunday, "this weekend" still means the current weekend.
+  saturday.setDate(today.getDate() + (today.getDay() === 0 ? -1 : 6 - today.getDay()));
+  sunday = new Date(saturday);
+  sunday.setDate(saturday.getDate() + 1);
+  const saturdayPassed = saturday < today;
+  document.getElementById('saturday-option').disabled = saturdayPassed;
+  document.getElementById('saturday-label').textContent = shortDateFormatter.format(saturday) + (saturdayPassed ? ' · bereits vorbei' : '');
+  document.getElementById('sunday-label').textContent = shortDateFormatter.format(sunday);
+  document.getElementById('weekend-range').textContent = `${shortDateFormatter.format(saturday)} – ${shortDateFormatter.format(sunday)}`;
+  customDate.min = localDateValue(today);
+  if (saturdayPassed && replyForm.elements.day.value === 'saturday') {
+    replyForm.elements.day.value = 'sunday';
+  }
+}
+
+function updateReply() {
+  refreshWeekend();
+  const day = replyForm.elements.day.value;
+  const isCustom = day === 'custom';
+  document.getElementById('custom-date-field').hidden = !isCustom;
+  customDate.required = isCustom;
+  customDate.disabled = !isCustom;
+  let when;
+  if (day === 'weekend') {
+    when = `dieses Wochenende (${shortDateFormatter.format(saturday)} – ${shortDateFormatter.format(sunday)})`;
+  } else if (day === 'saturday' || day === 'sunday') {
+    when = `am ${dateFormatter.format(day === 'saturday' ? saturday : sunday)}`;
+  } else if (customDate.value && customDate.validity.valid) {
+    const [year, month, date] = customDate.value.split('-').map(Number);
+    when = `am ${dateFormatter.format(new Date(year, month - 1, date))}`;
+  } else {
+    document.getElementById('reply-text').textContent = 'Wähle bitte dein Wunschdatum aus. Dann ist deine Nachricht fertig.';
+    document.getElementById('copy-status').textContent = 'Für deinen eigenen Vorschlag fehlt noch das Datum.';
+    return;
+  }
+  const time = dateTime.value ? ` um ${dateTime.value} Uhr` : '';
+  const message = day === 'weekend'
+    ? `Ja, ich nehme deine Einladung gerne an! Wie wäre es ${when}${time}?`
+    : `Ja, ich nehme deine Einladung gerne an! Ich schlage ${when}${time} vor.`;
+  document.getElementById('reply-text').textContent = message;
+  document.getElementById('copy-status').textContent = 'Danach in WeChat einfügen und selbst abschicken.';
+}
+
+replyForm.addEventListener('input', updateReply);
+replyForm.addEventListener('change', updateReply);
+window.addEventListener('pageshow', updateReply);
+updateReply();

@@ -55,3 +55,38 @@ button{touch-action:manipulation}
 #yes-button{grid-column:1}
 #no-button{grid-column:2}
 @media(max-width:600px){.actions{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* German copy and the personal date suggestion. */
+.subtitle,.label{letter-spacing:.6px;line-height:1.7}
+.log-row p{font-size:12px}
+.hint{line-height:1.7}
+.no-button{white-space:nowrap;padding-left:12px;padding-right:12px}
+.date-options{border:0;padding:0;margin:26px 0 20px;text-align:left;display:grid;gap:10px}
+.date-options legend{font-size:13px;font-weight:600;color:#737d69;margin-bottom:14px;line-height:1.7}
+.date-option{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid #e5ded7;border-radius:9px;cursor:pointer;min-height:64px;background:#fffdfa}
+.date-option:has(input:checked){border-color:var(--rose);background:#fbf0ef}
+.date-option:has(input:disabled){opacity:.5;cursor:default}
+.date-option input{accent-color:var(--rose);width:18px;height:18px;flex:none;margin:0}
+.date-option span{font-size:14px;line-height:1.5}
+.date-option small,.date-fields small{display:block;font-size:11px;color:#968b83;line-height:1.7;margin-top:3px}
+.date-fields{text-align:left;display:grid;gap:18px}
+.date-fields label{display:block;font-size:13px;color:#737d69;margin-bottom:7px}
+.date-fields label span{color:#a39892;font-size:11px}
+.date-fields input{display:block;box-sizing:border-box;min-width:0;max-width:100%;width:100%;min-height:48px;border:1px solid #ddd5ce;background:#fffdfa;border-radius:7px;line-height:1.5;color:#454a40;padding:10px 12px;font-family:inherit;font-size:16px}
+.date-fields input:focus-visible{outline:2px solid var(--rose);outline-offset:2px}
+.reply-card{text-align:left;padding:18px;line-height:1.7}
+.reply-card p{margin-bottom:0;font-size:14px}
+#copy-button{min-height:48px;height:auto;padding:12px 18px;white-space:normal;line-height:1.5}
+.copy-status{line-height:1.8}
+@media(max-width:600px){
+  .masthead{gap:15px;letter-spacing:1px}
+  .edition{max-width:130px;text-align:right;line-height:1.6}
+  .intro p{letter-spacing:.3px;line-height:1.8}
+  .log-title{flex-wrap:wrap}
+  .success h1{font-size:25px;line-height:1.4}
+  .no-button.escaped{width:145px}
+  .yes-button,.no-button{font-size:13px;padding-left:8px;padding-right:8px;letter-spacing:0}
+  .yes-button span{margin-left:6px}
+  .window-footer{font-size:8px;letter-spacing:0}
+  .success .reply-card{margin-top:24px}
+}

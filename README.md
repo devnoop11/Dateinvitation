@@ -1,36 +1,38 @@
 # Dateinvitation 💌
 
-Lokale, statische Website nach dem verlinkten Chat: chinesische Bug-Systemmeldung, ausweichender No-Button, Yes-Bestätigung mit Herzen und kopierbarer Antwort. Die Signatur lautet **来自一位在意你的人**.
+Eine persönliche Einladung auf Deutsch, optimiert für Smartphone und Desktop. Nach der Zusage kann die Empfängerin dieses Wochenende, Samstag, Sonntag oder einen eigenen Termin wählen. Die optionale Uhrzeit und das gewählte Datum werden in eine Nachricht für WeChat übernommen.
 
 ## Lokal öffnen
 
-`index.html` im Browser öffnen. Es sind keine Installation, kein Build und keine externen Bibliotheken nötig. Für die Zwischenablage ist ein lokaler Webserver zuverlässiger:
+`index.html` direkt im Browser öffnen oder einen lokalen Webserver starten:
 
 ```sh
-cd /pfad/zu/date-invitation
 python3 -m http.server 4173 --bind 127.0.0.1
 ```
 
-Danach http://127.0.0.1:4173 öffnen. Falls Kopieren nicht verfügbar ist, markiert die Seite den Antworttext zur manuellen Übernahme.
+Danach http://127.0.0.1:4173 öffnen. Keine Installation, kein Build und keine externen Bibliotheken erforderlich.
 
-## Smartphone
+## Bedienung
 
-Für kleine Bildschirme ab 320 px optimiert: gut lesbare Texte, mindestens 48 px hohe Touch-Buttons und sichere Abstände zum Bildschirmrand. Der No-Button weicht beim Berühren aus und bleibt im sichtbaren Bereich. Die Zusage scrollt auf kleinen Displays in den sichtbaren Bereich. Die Seite berücksichtigt reduzierte Bewegung und Displayaussparungen.
+1. Mit **Ja, gerne** die Einladung annehmen.
+2. Dieses Wochenende, Samstag oder Sonntag auswählen – oder ein eigenes Datum vorschlagen.
+3. Optional eine Uhrzeit angeben.
+4. **Nachricht kopieren** wählen und den Text in WeChat einfügen und abschicken.
+
+Die Wochenenddaten werden im lokalen Kalender des Browsers berechnet. Am Sonntag ist der vergangene Samstag nicht mehr auswählbar. Eigene Termine dürfen nicht in der Vergangenheit liegen. Eine Uhrzeit ist optional. Die Nachricht zeigt die Auswahl vor dem Kopieren an. Falls die Zwischenablage nicht verfügbar ist, wird der Text zum manuellen Kopieren markiert.
+
+Die Website sendet nichts automatisch, speichert keine persönlichen Daten und hat keine E-Mail-Benachrichtigung.
 
 ## GitHub Pages
 
-1. Den Inhalt dieses Ordners einschließlich `.github` in ein GitHub-Repository übernehmen und auf den Branch `main` pushen.
-2. Im Repository unter **Settings → Pages → Build and deployment → Source** die Option **GitHub Actions** auswählen.
-3. Unter **Actions → Deploy to GitHub Pages → Run workflow** die erste Veröffentlichung starten. Bei späteren Pushes auf `main` läuft sie automatisch.
+Live: https://devnoop11.github.io/Dateinvitation/
 
-Die Veröffentlichung nutzt `.github/workflows/pages.yml`. Alle Asset-Pfade sind relativ; dadurch funktionieren auch Projekt-URLs wie `https://USERNAME.github.io/REPOSITORY/`.
+Pushes auf `main` veröffentlichen über `.github/workflows/pages.yml` automatisch. Unter **Settings → Pages → Source** muss **GitHub Actions** gewählt sein. GitHub Pages muss nach einem Wechsel der Repository-Sichtbarkeit gegebenenfalls erneut aktiviert werden.
 
-## Anpassen
+## Dateien
 
-- `index.html`: chinesische Texte und Einladung
-- `style.css`: Farben, Layout und Animationen
-- `script.js`: ausweichender Button, Bestätigung und Kopieren
+- `index.html`: deutsche Texte und Terminauswahl
+- `style.css`: responsive Darstellung und Animationen
+- `script.js`: Buttons, Wochenendberechnung und kopierbare Nachricht
 
-Die Website versendet keine Antwort automatisch. Ein Klick auf Yes bleibt im Browser; die empfangende Person kann die Antwort kopieren und selbst verschicken. Es gibt keinen Server, keine Analyse und keine Speicherung persönlicher Daten.
-
-Die HTML-Anhänge des geteilten Chats waren nicht abrufbar; diese Version wurde anhand der sichtbaren Beschreibung und Texte neu umgesetzt.
+Alle Asset-Pfade sind relativ und funktionieren unter der Projekt-URL. Die Seite berücksichtigt reduzierte Bewegung und Displayaussparungen.
